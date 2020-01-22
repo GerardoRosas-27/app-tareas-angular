@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <form #notesForm="ngForm" >
+                        <input type="hidden" name="_id" #_id="ngModel"
+                                 [(ngModel)]="notesService.selectedNotes._id">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="title" #title="ngModel"
+                                 [(ngModel)]="notesService.selectedNotes.title" placeholder="Introduce el titulo">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="content" #content="ngModel"
+                                 [(ngModel)]="notesService.selectedNotes.content" placeholder="Introduce el contenido">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="author" #author="ngModel"
+                                 [(ngModel)]="notesService.selectedNotes.author" placeholder="Introduce el autor">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="date" #date="ngModel"
+                                 [(ngModel)]="notesService.selectedNotes.date" placeholder="Introduce la fecha">
+                            </div>
+                            
+
+                        </div>
+                    </form>
+                    <div class="card-action">
+                        <div class="input-field col s12">
+                            <button class="btn red" (click)="clearForm(notesForm)">Cancelar</button>
+                            <button class="btn right" (click)="addNotes(notesForm)">Guardar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col s7">
+            <table>
+                <thead>
+                    <th>Titulo</th>
+                    <th>Contenido</th>
+                    <th>Autor</th>
+                    <th>Fecha</th>
+                    <th>Opciones</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let note of notesService.notes">
+                        <td>{{ note.title }}</td>
+                        <td>{{ note.content }}</td>
+                        <td>{{ note.author }}</td>
+                        <td>{{ note.date }}</td>
+                        <td>
+                            <a class="accionButton" (click)="editNotes(note)">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            <a class="accionButton color-rojo" (click)="deleteNotes(note)">
+                                <i class="material-icons">delete</i>
+                            </a>
+                           
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
